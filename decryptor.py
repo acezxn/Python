@@ -1,5 +1,4 @@
 from Crypto.Cipher import AES
-import base64
 import os
 #key = '12345678901234567890123456789012'
 
