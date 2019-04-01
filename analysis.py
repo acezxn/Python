@@ -1,14 +1,54 @@
-import time
+iimport time
 import random
 import matplotlib.pyplot as plt
 import math
 
 def mean(inlist):
     sum = 0
-    for int in inlist:
-        sum += int
+    for i in inlist:
+        sum += i
     mean = sum / len(inlist)
     return mean
+
+def is_same(data):
+    avg = mean(data)
+    no = True
+    while True:
+        for int in data:
+            if int != avg:
+                no = False
+            else:
+                continue
+        break
+    if no == True:
+        return True
+    else:
+        return False
+
+def Daniel_sort(data):
+    greater = []
+    less_equal = []
+    res = []
+    one = False
+    if len(data) == 1:
+        one = True
+        res = data
+    while one == False:
+        same = is_same(data)
+        if same == True:
+            return data
+        avg = mean(data)
+        for i in data:
+            if i > avg:
+                greater.append(i)
+            else:
+                less_equal.append(i)
+        lower_half = Daniel_sort(less_equal)
+        upper_half = Daniel_sort(greater)
+        res = res + lower_half + upper_half
+        break
+
+    return res
 
 def median(inlist):
     for i in range(1,len(inlist)-1):
@@ -18,14 +58,16 @@ def median(inlist):
             act = True
     while act:
         if len(inlist) % 2 == 0:
-            right = ls[int(len(inlist)/2)]
-            left = ls[int(len(inlist)/2) - 1]
+            right = inlist[int(len(inlist)/2)]
+            left = inlist[int(len(inlist)/2) - 1]
             sum = right + left
-            median = sum / 2
+            median = int(sum / 2)
+            return median
+            break
         else:
-            median = ls[int(len(inlist)/2)]
-        return median
-        break
+            median = inlist[int(len(inlist)/2)]
+            return median
+            break
     if act == False:
         print("Error: Number not sorted")
 
@@ -194,6 +236,7 @@ if __name__ == "__main__":
     t_selection = []
     t_quick = []
     t_merge = []
+    t_Daniel = []
     for trial in trial_list:
         inlist = list_gen(trial,1,100,allow_repeat = True)
 
@@ -226,6 +269,12 @@ if __name__ == "__main__":
         end = time.time()
         t_merge.append(end-start)
         print('Merge Sort {} with {} sec'.format(trial,end-start))
+
+        start = time.time()
+        outlist = Daniel_sort(inlist.copy())
+        end = time.time()
+        t_Daniel.append(end-start)
+        print('Daniel Sort {} with {} sec'.format(trial,end-start))
     plt.figure()
     plt.xscale('log')
     plt.yscale('log')
@@ -234,8 +283,10 @@ if __name__ == "__main__":
     plt.plot(trial_list,t_selection,color='blue',label='Selection Sort')
     plt.plot(trial_list,t_quick,color='orange',label='Quick Sort')
     plt.plot(trial_list,t_merge,color='red',label='Merge Sort')
+    plt.plot(trial_list,t_Daniel,color='purple',label='Daniel Sort')
     plt.xlabel('Amount of data')
     plt.ylabel('Time (sec)')
     plt.legend(loc=1)
     plt.grid(True)
     plt.show()
+
