@@ -1,4 +1,4 @@
-iimport time
+import time
 import random
 import matplotlib.pyplot as plt
 import math
