@@ -55,7 +55,11 @@ while True:
     '''
     )
     act = input("\nSelect your choice: ")
-    if act == '1':
+    print(act)
+    if len(act) >1:
+        print("Invalid action")
+        continue
+    elif act == '1':
         print(
         '''
         This is a logical game. The objective is to guess the 4 digits number the computer holds based on cluesself.
@@ -76,9 +80,9 @@ while True:
         '''
         )
         continue
-    if act == '2':
+    elif act == '2':
         pass
-    if act == '3':
+    elif act == '3':
         print("\nThanks for using ABgame.py. See you!\n")
         break
     res = ''
