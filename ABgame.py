@@ -2,23 +2,29 @@ import random
 secret = ''.join(random.sample("0123456789", 4))
 gus = 0
 #print(secret)
-print("     /\  \         /\  \    ")
-print("    /::\  \       /::\  \   ")
-print("   /:/\:\  \     /:/\:\  \  ")
-print("  /::\~\:\  \   /::\~\:\__\ ")
-print(" /:/\:\ \:\__\ /:/\:\ \:|__|")
-print(" \/__\:\/:/  / \:\~\:\/:/  /")
-print("      \::/  /   \:\ \::/  / ")
-print("      \::/  /   \:\ \::/  / ")
-print("      /:/  /     \:\/:/  /  ")
-print("     /:/  /       \::/__/   ")
-print("     \/__/         ~~       ")
+print(
+'''
+      ___           ___
+     /\  \         /\  \
+    /::\  \       /::\  \
+   /:/\:\  \     /:/\:\  \
+  /::\~\:\  \   /::\~\:\__\
+ /:/\:\ \:\__\ /:/\:\ \:|__|
+ \/__\:\/:/  / \:\~\:\/:/  /
+      \::/  /   \:\ \::/  /
+      /:/  /     \:\/:/  /
+     /:/  /       \::/__/
+     \/__/         ~~
+
+''')
+
 res = -1
 secret = ''.join(random.sample("0123456789", 4))
 #print(secret)
 print("\n4 digits random number GENERATED! ")
 while True:
     res = input("Guess a 4 digits number: ")
+    s_char = False
     if len(res) > 4 or len(res) < 4: #to keep gueses to 4 digits.
         print("Not a 4 digits #! ╭∩╮༼ಠ益ಠ༽ ╭∩╮༼ಠ益ಠ༽")
         continue
@@ -36,6 +42,13 @@ while True:
         continue
     if len(res) > len(set(res)): #to avoid guess from repeating digits.
         print("Digits can not be repeated!! （͡°͜ʖ͡°）")
+        continue
+    for i in res:
+        if i == "-" or i == "_" or i == "+" or i == "=":
+            print("Insert digits!!!")
+            s_char = True
+            break
+    if s_char:
         continue
     gus += 1
     for i, al in enumerate(list(str(secret))):
