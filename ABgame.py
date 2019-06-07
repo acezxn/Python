@@ -238,6 +238,7 @@ secret = ''.join(random.sample("0123456789", 4))
 gus = 0
 default = None
 FILENAME = ".Leaderboard.csv"
+fields = ['User', 'Score','rank']
 filelist = os.listdir(os.path.abspath(""))
 for file in filelist:
     if file == FILENAME:
@@ -246,7 +247,6 @@ for file in filelist:
         f = open(FILENAME, "w+")
         f.close()
         csv_init(FILENAME, fields)
-fields = ['User', 'Score','rank']
 data = csv_read_dict(FILENAME)
 while True:
     options()
