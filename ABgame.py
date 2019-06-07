@@ -167,8 +167,6 @@ def options():
     4) Quit
     5) Initialize leaderboard (YOU WILL LOSE ALL RECORDS)
 
-        * Select 5 if first play *
-
     '''
     )
 
@@ -240,6 +238,13 @@ secret = ''.join(random.sample("0123456789", 4))
 gus = 0
 default = None
 FILENAME = ".Leaderboard.csv"
+filelist = os.listdir(os.path.abspath(""))
+for file in filelist:
+    if file == FILENAME:
+        pass
+    else:
+        f = open(FILENAME, "w+")
+        f.close()
 fields = ['User', 'Score','rank']
 data = csv_read_dict(FILENAME)
 while True:
