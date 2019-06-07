@@ -245,6 +245,7 @@ for file in filelist:
     else:
         f = open(FILENAME, "w+")
         f.close()
+        csv_init(FILENAME, fields)
 fields = ['User', 'Score','rank']
 data = csv_read_dict(FILENAME)
 while True:
