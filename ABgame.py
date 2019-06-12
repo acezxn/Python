@@ -235,7 +235,6 @@ while True:
     yes = 0
     f = os.listdir(os.path.abspath(""))
     for file in f:
-        print(file)
         if file == ".Leaderboard.csv":
             yes = 1
     if yes == 0:
