@@ -57,7 +57,6 @@ def banner(choice):
           ███    ███   ███    ██▄
           ███    ███   ███    ███
           ███    █▀  ▄█████████▀
-
         ''')
     if choice == 2:
         print(
@@ -72,7 +71,6 @@ def banner(choice):
         ██▪   ▄█▀▄ ▄█ ▀█▄▐█·██ ▄▄
         ▐█▌▐▌▐█▌.▐▌▐█▄▪▐█▐█▌▐███▌
         .▀▀▀  ▀█▄▀▪·▀▀▀▀ ▀▀▀·▀▀▀
-
         ▀
         ''')
     if choice == 3:
@@ -101,7 +99,6 @@ def banner(choice):
                             ╦  ┬  ┌─┐┬  ┬┌─┐  ┬  ┌─┐┌─┐┬┌─┐
                             ║  │  │ │└┐┌┘├┤   │  │ ││ ┬││
                             ╩  ┴─┘└─┘ └┘ └─┘  ┴─┘└─┘└─┘┴└─┘
-
         '''
         )
 def rules():
@@ -111,16 +108,12 @@ def rules():
     1) "A" stands for the digits guessed correctly.
     2) "B" stands for the digits guessed correctly, but not in the specific locaton.
     3) The coefficient in front of "A" or "B" stands for how many numbers of each signs.
-
     Ex: 2A2B means 2 digits were guessed correctly, and the other digits were also guessed correctly, but located in the wrong position.
-
     SYNTAX LIMITATIONS:
     1) A player can not insert repeated digits.
     2) A player can only insert integers.
     3) A player needed to insert exactly 4 digits.
-
     * Syntax error do not count in trials. *
-
     Enjoy, have fun, and have a pleasant journey in logic path~
     '''
     )
@@ -159,14 +152,12 @@ def LdB_core():
 def options():
     print(
     '''
-
     Actions:
     1) About this game
     2) Start playing
     3) Check leaderboard
     4) Quit
     5) Initialize leaderboard (YOU WILL LOSE ALL RECORDS)
-
     '''
     )
 
@@ -239,16 +230,17 @@ gus = 0
 default = None
 FILENAME = ".Leaderboard.csv"
 fields = ['User', 'Score','rank']
-filelist = os.listdir(os.path.abspath(""))
-for file in filelist:
-    if file == FILENAME:
-        pass
-    else:
-        f = open(FILENAME, "w+")
-        f.close()
-        csv_init(FILENAME, fields)
 data = csv_read_dict(FILENAME)
 while True:
+    f = []
+    yes = 0
+    f = os.listdir(os.path.abspath(""))
+    for file in f:
+        print(file)
+        if file == ".Leaderboard.csv":
+            yes = 1
+    if yes == 0:
+        sv_init(FILENAME,fields)
     options()
     act = input("\nSelect your choice: ")
     try:
