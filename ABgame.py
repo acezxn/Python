@@ -230,7 +230,6 @@ gus = 0
 default = None
 FILENAME = ".Leaderboard.csv"
 fields = ['User', 'Score','rank']
-data = csv_read_dict(FILENAME)
 while True:
     f = []
     yes = 0
@@ -241,6 +240,7 @@ while True:
             yes = 1
     if yes == 0:
         sv_init(FILENAME,fields)
+    data = csv_read_dict(FILENAME)
     options()
     act = input("\nSelect your choice: ")
     try:
