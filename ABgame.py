@@ -239,7 +239,7 @@ while True:
         if file == ".Leaderboard.csv":
             yes = 1
     if yes == 0:
-        sv_init(FILENAME,fields)
+        csv_init(FILENAME,fields)
     data = csv_read_dict(FILENAME)
     options()
     act = input("\nSelect your choice: ")
