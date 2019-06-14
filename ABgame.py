@@ -250,18 +250,21 @@ while True:
             continue
         elif len(act) == 1:
             if a == 1:
-                print("c: 1")
+                print(chr(27) + "[2J")
                 rules()
                 continue
             elif a == 2:
+                print(chr(27) + "[2J")
                 start_game()
             elif a == 3:
+                print(chr(27) + "[2J")
                 LdB_core()
                 continue
             elif a == 4:
                 print("\nThanks for using ABgame.py. See you!\n")
                 break
             elif a == 5:
+                print(chr(27) + "[2J")
                 csv_init(FILENAME, fields)
                 print("\nRecord had successfully re-initialized!")
                 continue
