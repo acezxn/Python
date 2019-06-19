@@ -165,7 +165,6 @@ def start_game():
     rec = []
     gus = 0
     secret = ''.join(random.sample("0123456789", 4))
-    #print(secret)
     print("\n4 digits random number GENERATED! ")
     while True:
         res = input("Guess a 4 digits number: ")
@@ -173,7 +172,6 @@ def start_game():
         if len(res) > 4 or len(res) < 4: #to keep gueses to 4 digits.
             print("Not a 4 digits #! ╭∩╮༼ಠ益ಠ༽ ╭∩╮༼ಠ益ಠ༽")
             continue
-        sI = []
         a = 0
         b = 0
         if res == "DANI": #the backdoor
@@ -200,11 +198,8 @@ def start_game():
             for I, AL in enumerate(list(res)):
                 if I == i and al == AL:
                     a += 1
-                    sI.append(AL)
                 elif al == AL:
-                    if AL not in sI:
-                        b += 1
-                        sI.append(AL)
+                    b += 1
         if a == 4:
             b = 0
             print("Correct  ヽ༼ຈل͜ຈ༽ﾉ︵┻━┻")
