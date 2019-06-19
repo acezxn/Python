@@ -5,7 +5,6 @@ import pandas as pd
 
 def csv_write_list(FILENAME,fields,data):
     with open(FILENAME, 'w', newline='') as csvfile:
-        # fieldnames = ['name', 'score']
         writer = csv.DictWriter(csvfile, fieldnames=fields)
         writer.writeheader()
         for dict in data:
@@ -18,7 +17,6 @@ def csv_init(FILENAME,fields):
 
 def csv_append_list(FILENAME,fields,data):
     with open(FILENAME, 'a', newline='') as csvfile:
-        # fieldnames = ['name', 'score']
         writer = csv.DictWriter(csvfile, fieldnames=fields)
         for dict in data:
             writer.writerow(dict)
@@ -109,6 +107,7 @@ def rules():
     2) "B" stands for the digits guessed correctly, but not in the specific locaton.
     3) The coefficient in front of "A" or "B" stands for how many numbers of each signs.
     Ex: 2A2B means 2 digits were guessed correctly, and the other digits were also guessed correctly, but located in the wrong position.
+
     SYNTAX LIMITATIONS:
     1) A player can not insert repeated digits.
     2) A player can only insert integers.
@@ -211,19 +210,25 @@ def start_game():
             print("Correct  ヽ༼ຈل͜ຈ༽ﾉ︵┻━┻")
             print("You took "+str(gus)+" gueses!")
             LBD = input("Do you want to record your score?(Y/N)\n: ")
-            if LBD == 'Y':
-                Name = input("Insert name: ")
-                dict = {}
-                dict.update({"User":Name,"Score":gus})
-                rec.append(dict)
-                print(rec)
-                csv_append_list(FILENAME,fields,rec)
+            while True:
+                if LBD == 'Y' or LBD == 'y':
+                    Name = input("Insert name: ")
+                    dict = {}
+                    dict.update({"User":Name,"Score":gus})
+                    rec.append(dict)
+                    csv_append_list(FILENAME,fields,rec)
+                    break
+                elif LBD == 'N' or LBD == 'n':
+                    break
+                else:
+                    continue
             break
         if b == 4:
             a = 0
         print(str(a)+"A"+str(b)+"B")
 
 choice = random.randint(1,4)
+print(chr(27) + "[2J")
 banner(choice)
 secret = ''.join(random.sample("0123456789", 4))
 gus = 0
