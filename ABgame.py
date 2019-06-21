@@ -32,7 +32,7 @@ def csv_read_dict(FILENAME):
 def ranking(data):
     score_list = []
     for row in data:
-        score = int(row['Score'])
+        score = int(row['Trials'])
         if score in score_list:
             pass
         else:
@@ -40,7 +40,7 @@ def ranking(data):
     score_list.sort(reverse=False)
 
     for row in data:
-        score = int(row['Score'])
+        score = int(row['Trials'])
         rank = score_list.index(score) + 1
         row['rank'] = rank
 def banner(choice):
@@ -136,12 +136,12 @@ def LdB_core():
         ranks = []
         for row in data:
             user = row['User']
-            score = str(row['Score'])
+            score = str(row['Trials'])
             rank = str(row['rank'])
             users.append(user)
             scores.append(score)
             ranks.append(rank)
-        showing_data = {"Name":users, "Score":scores, "Rank":ranks}
+        showing_data = {"Name":users, "Trials":scores, "Rank":ranks}
         df = pd.DataFrame(showing_data)
         print(df)
         csv_write_list(FILENAME,fields,data)
@@ -209,7 +209,7 @@ def start_game():
                 if LBD == 'Y' or LBD == 'y':
                     Name = input("Insert name: ")
                     dict = {}
-                    dict.update({"User":Name,"Score":gus})
+                    dict.update({"User":Name,"Trials":gus})
                     rec.append(dict)
                     csv_append_list(FILENAME,fields,rec)
                     break
@@ -229,7 +229,7 @@ secret = ''.join(random.sample("0123456789", 4))
 gus = 0
 default = None
 FILENAME = ".Leaderboard.csv"
-fields = ['User', 'Score','rank']
+fields = ['User', 'Trials','rank']
 while True:
     f = []
     yes = 0
@@ -267,6 +267,10 @@ while True:
                 print(chr(27) + "[2J")
                 csv_init(FILENAME, fields)
                 print("\nRecord had successfully re-initialized!")
+                continue
+            else:
+                print(chr(27) + "[2J")
+                print("Invalid action")
                 continue
         else:
             continue
