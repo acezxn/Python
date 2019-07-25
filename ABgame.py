@@ -104,16 +104,15 @@ def rules():
     '''
     This is a logical game. The objective is to guess the 4 digits number the computer holds based on clues.
     1) "A" stands for the digits guessed correctly.
-    2) "B" stands for the digits guessed correctly, but not in the specific locaton.
-    3) The coefficient in front of "A" or "B" stands for how many numbers of each signs.
+    2) "B" stands for the digits guessed correctly, but not in the specific location.
+    3) The coefficient in front of "A" or "B" stands for how many numbers of each sign.
     Ex: 2A2B means 2 digits were guessed correctly, and the other digits were also guessed correctly, but located in the wrong position.
 
     SYNTAX LIMITATIONS:
     1) A player can not insert repeated digits.
     2) A player can only insert integers.
     3) A player needed to insert exactly 4 digits.
-    * Syntax error do not count in trials. *
-    Enjoy, have fun, and have a pleasant journey in logic path~
+    * Syntax error does not count in trials. *
     '''
     )
 def LdB_core():
