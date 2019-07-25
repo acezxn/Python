@@ -113,6 +113,7 @@ def rules():
     2) A player can only insert integers.
     3) A player needed to insert exactly 4 digits.
     * Syntax error does not count in trials. *
+    Enjoy, have fun, and have a pleasant journey in logic path~
     '''
     )
 def LdB_core():
