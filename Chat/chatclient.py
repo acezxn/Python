@@ -6,6 +6,7 @@ import threading
 import time
 from cryptography.fernet import Fernet
 import os
+import base64
 
 class client_crypto:
     def __init__(self, key = None):
@@ -26,8 +27,10 @@ class client_crypto:
             f.close()
     def encrypt(self, msg):
         msg = self.cryptor.encrypt(msg)
+        msg =  base64.b64encode(msg)
         return msg
     def decrypt(self, msg):
+        msg = base64.b64decode(msg)
         msg = self.cryptor.decrypt(msg)
         return msg
 
