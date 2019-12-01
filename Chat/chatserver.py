@@ -7,6 +7,7 @@ import threading
 import time
 from cryptography.fernet import Fernet
 import os
+import base64
 
 class server_crypto:
     def __init__(self, key = None):
@@ -27,8 +28,10 @@ class server_crypto:
             f.close()
     def encrypt(self, msg):
         msg = self.cryptor.encrypt(msg)
+        msg = base64.b64encode(msg)
         return msg
     def decrypt(self, msg):
+        msg = base64.b64decode(msg)
         msg = self.cryptor.decrypt(msg)
         return msg
 
@@ -95,6 +98,7 @@ V  You can get access to conversations
     '''
     try:
         print('Started Authentication')
+        time.sleep(1)
         title = crypto.encrypt('Insert password\n'.encode('utf-8'))
         c.send(title)
         while True:
@@ -144,7 +148,7 @@ def Main():
     # reverse a port on your computer
     # in our case it is 12345 but it
     # can be anything
-    port = 5555
+    port = 5432
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     s.bind((host, port))
     print("socket binded to port", port)
