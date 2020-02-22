@@ -7,6 +7,7 @@ import time
 from cryptography.fernet import Fernet
 import os
 import base64
+import hashlib
 
 class client_crypto:
     def __init__(self, key = None):
@@ -104,7 +105,8 @@ def connecting(name, crypto):
     try:
         s.connect((ip, port))
         start_new_thread(Print_response, (s, crypto))
-        out = '\n'+name + ': '+input()+'\n'
+        out = input()
+        out = hashlib.sha1(out.encode('utf-8')).hexdigest()
         out = crypto.encrypt(out.encode('utf-8'))
         s.send(out)
         while True:
