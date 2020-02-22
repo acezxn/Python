@@ -8,6 +8,7 @@ import time
 from cryptography.fernet import Fernet
 import os
 import base64
+import hashlib
 
 class server_crypto:
     def __init__(self, key = None):
@@ -103,7 +104,8 @@ V  You can get access to conversations
         c.send(title)
         while True:
             ans = crypto.decrypt(c.recv(1024))
-            if ans.strip().decode('utf-8').split(': ')[1] == "Daniel":
+
+            if ans.strip().decode('utf-8') == hashlib.sha1(b"Daniel").hexdigest():
                 start_new_thread(user_agent, (c, crypto, bf, clientnum))
                 succ = crypto.encrypt( (banner+'\n').encode('utf-8'))
                 c.send(succ)
@@ -142,13 +144,18 @@ def Main():
         print('Generating key')
         crypto.keygen()
     else:
-        crypto.readkey()
+        print('Keyfile already exists ')
+        act = input("Do you wanted to generate a new key?[Y/n]")
+        if act == 'Y':
+            crypto.keygen()
+        else:
+            crypto.readkey()
     host = ""
 
     # reverse a port on your computer
     # in our case it is 12345 but it
     # can be anything
-    port = 5432
+    port = 1001
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     s.bind((host, port))
     print("socket binded to port", port)
@@ -167,7 +174,7 @@ def Main():
             print('Connected to :', addr[0], ':', addr[1])
             bf.cl_dict.update({str(addr[1]): c})
             try:
-                if clientnum < 3:
+                if abs(clientnum) + 1:# < 3:
                     start_new_thread(auth, (c, crypto, bf, clientnum))
                     clientnum += 1
                 else:
